@@ -18,7 +18,15 @@ def init_crawler_data():
     global subdomains
     subdomains = defaultdict(int)
 
-
+def write_data(file):
+    with open(file,'w') as f:
+        f.write(f"Number of unique pages: {len(urls)}\n\n")
+        f.write(f"Page with most words: {max(url_words.keys(),key=lambda x: url_words[x])}\n\n")
+        f.write(f"Number of subdomains: {len(subdomains.keys())}\n\n")
+        subd = subdomains.keys()
+        subd = sorted(subd)
+        for i in subd:
+            f.write(f"{i}, {subdomains[i]}\n")
 
 
     

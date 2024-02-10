@@ -13,6 +13,7 @@ ALLOWED_URLS_PATTERN = r".*\.ics\.uci\.edu\/[^#]*" \
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
+    crawler_data.write_data("crawler_data.txt")
     return [link for link in links if is_valid(link)]
 
 def update_frequencies(tokens, url):
