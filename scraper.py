@@ -13,7 +13,6 @@ ALLOWED_URLS_PATTERN = r".*\.ics\.uci\.edu\/[^#]*" \
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
-    crawler_data.write_data("crawler_data.txt")
     return [link for link in links if is_valid(link)]
 
 def update_frequencies(tokens, url):
@@ -66,13 +65,17 @@ def fix_url(base, url):
 
 def check_similarity(url, shash):
     # Check similarity with given page against all other urls
-    for i in crawler_data.simhashes.keys():
-        if i == url:
+    while True:
+        try:
+            for i in crawler_data.simhashes.keys():
+                if i == url:
+                    continue
+                # If 90% similar return True
+                if compare_hashes(shash, crawler_data.simhashes[i]) > 0.80:
+                    return True
+            return False
+        except RuntimeError:
             continue
-        # If 90% similar return True
-        if compare_hashes(shash, crawler_data.simhashes[i]) > 0.80:
-            return True
-    return False
 
 def extract_next_links(url, resp):
     # Implementation required.
@@ -98,6 +101,10 @@ def extract_next_links(url, resp):
     if resp.raw_response == None or resp.raw_response.content == None:
         return list()
     
+    # Check for the size of the file, avoid pages larger than 5MB
+    if len(resp.raw_response.content) > 5000000:
+        return list()
+
     # Parse the contents of the page
     soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
 
@@ -106,8 +113,8 @@ def extract_next_links(url, resp):
     for text in soup.stripped_strings:
         tokens += tokenize(text)
 
-    # Avoid files with low information, could be large or small
-    if len(set(tokens)) <= 10:
+    # Avoid files with low information, could be large or small, not enough unique tokens or tokens all small
+    if len(set(tokens)) <= 10 or max(map(len,tokens)) <= 5:
         return list()
     update_frequencies(tokens, url)
 
@@ -150,7 +157,7 @@ def is_valid(url):
             + r"|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso"
             + r"|epub|dll|cnf|tgz|sha1"
             + r"|thmx|mso|arff|rtf|jar|csv"
-            + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
+            + r"|rm|smil|wmv|swf|wma|zip|rar|gz|apk)$", parsed.path.lower())
 
     except TypeError:
         print ("TypeError for ", parsed)

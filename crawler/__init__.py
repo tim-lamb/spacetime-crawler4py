@@ -11,6 +11,7 @@ class Crawler(object):
         self.workers = list()
         self.worker_factory = worker_factory
         crawler_data.init_crawler_data()
+        
 
     def start_async(self):
         self.workers = [
@@ -20,8 +21,12 @@ class Crawler(object):
             worker.start()
 
     def start(self):
-        self.start_async()
-        self.join()
+        try:
+            self.start_async()
+            self.join()
+        except KeyboardInterrupt:
+            # When closing crawler, terminate threads cleanly
+            self.frontier.terminate.set()
 
     def join(self):
         for worker in self.workers:

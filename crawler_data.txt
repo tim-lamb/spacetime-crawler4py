@@ -1,8 +1,51 @@
-Number of unique pages: 11
+Number of unique pages: 5043
 
-Page with most words: https://www.ics.uci.edu/community/news/view_news?id=2196
+Page with most words: http://www.ics.uci.edu/~ajfrank/pubs/aimls12.odp
 
-Number of subdomains: 2
+Number of subdomains: 45
 
+acoi.ics.uci.edu, 1
+aiclub.ics.uci.edu, 4
+archive-beta.ics.uci.edu, 2
+archive.ics.uci.edu, 32
+calendar.ics.uci.edu, 1
+cert.ics.uci.edu, 1
+cml.ics.uci.edu, 43
+code.ics.uci.edu, 1
+computableplant.ics.uci.edu, 8
+courselisting.ics.uci.edu, 1
+create.ics.uci.edu, 11
+cwicsocal18.ics.uci.edu, 10
+emj.ics.uci.edu, 39
+grape.ics.uci.edu, 367
+hack.ics.uci.edu, 1
+hana.ics.uci.edu, 1
+hpi.ics.uci.edu, 8
+i-sensorium.ics.uci.edu, 13
+intranet.ics.uci.edu, 12
+isg.ics.uci.edu, 42
+jgarcia.ics.uci.edu, 21
+luci.ics.uci.edu, 1
+mailman.ics.uci.edu, 1
+malek.ics.uci.edu, 1
+mcs.ics.uci.edu, 63
+mds.ics.uci.edu, 2
+mhcid.ics.uci.edu, 1
+mse.ics.uci.edu, 4
+mswe.ics.uci.edu, 23
+nalini.ics.uci.edu, 9
+redmiles.ics.uci.edu, 4
+sdcl.ics.uci.edu, 58
+seal.ics.uci.edu, 45
+sli.ics.uci.edu, 252
+studentcouncil.ics.uci.edu, 1
 swiki.ics.uci.edu, 1
-www.ics.uci.edu, 6
+tad.ics.uci.edu, 3
+tutors.ics.uci.edu, 5
+ugradforms.ics.uci.edu, 1
+vision.ics.uci.edu, 1
+wics.ics.uci.edu, 38
+www-db.ics.uci.edu, 22
+www.cert.ics.uci.edu, 1
+www.ics.uci.edu, 3262
+yarra.ics.uci.edu, 1
