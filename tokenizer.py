@@ -42,6 +42,9 @@ def computeWordFrequencies(tokens):
     Return:
     count: Dict<Token, Int> dict of tokens and its # of occurences
     """
+    # Remove one character tokens
+    tokens = [token for token in tokens if len(token) > 1]
+
     # Default dict with default value for each token being 0
     count = defaultdict(int)
 

@@ -12,8 +12,8 @@ from datetime import datetime
 import re
 import random
 
-PATTERN = r".*(\.ics\.uci\.edu\/)[^#]*|.*(\.cs\.uci\.edu\/)[^#]*|.*(\.informatics\.uci\.edu\/)[^#]*|.*(\.stat\.uci\.edu\/)[^#]*"
-DOMAINS = [".ics.uci.edu/", ".cs.uci.edu/", ".informatics.uci.edu/", ".stat.uci.edu/"]
+PATTERN = r".*(ics\.uci\.edu\/)[^#]*|.*(cs\.uci\.edu\/)[^#]*|.*(informatics\.uci\.edu\/)[^#]*|.*(stat\.uci\.edu\/)[^#]*"
+DOMAINS = ["ics.uci.edu/", "cs.uci.edu/", "informatics.uci.edu/", "stat.uci.edu/"]
 
 def get_domain(url):
     # Get domain of a URL
@@ -36,18 +36,18 @@ class Frontier(object):
 
         # Timers for each domain to enforce politeness
         self.domain_timers = {
-            ".ics.uci.edu/": datetime.now(),
-            ".cs.uci.edu/": datetime.now(),
-            ".informatics.uci.edu/": datetime.now(),
-            ".stat.uci.edu/": datetime.now()
+            "ics.uci.edu/": datetime.now(),
+            "cs.uci.edu/": datetime.now(),
+            "informatics.uci.edu/": datetime.now(),
+            "stat.uci.edu/": datetime.now()
         }
 
         # Separate lists for each domain
         self.to_be_downloaded = {
-            ".ics.uci.edu/": list(),
-            ".cs.uci.edu/": list(),
-            ".informatics.uci.edu/": list(),
-            ".stat.uci.edu/": list()
+            "ics.uci.edu/": list(),
+            "cs.uci.edu/": list(),
+            "informatics.uci.edu/": list(),
+            "stat.uci.edu/": list()
         }
         crawler_data.init_load_save()
         if not os.path.exists(self.config.save_file) and not restart:

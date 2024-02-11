@@ -6,6 +6,7 @@ import crawler_data
 from simhash import *
 import urllib.robotparser
 
+
 # Specified domains in regex pattern
 ALLOWED_URLS_PATTERN = r".*\.ics\.uci\.edu\/[^#]*" \
                         + r"|.*\.cs\.uci\.edu\/[^#]*" \
@@ -14,16 +15,32 @@ ALLOWED_URLS_PATTERN = r".*\.ics\.uci\.edu\/[^#]*" \
 # With groups
 PATTERN = r".*(\.ics\.uci\.edu\/)[^#]*|.*(\.cs\.uci\.edu\/)[^#]*|.*(\.informatics\.uci\.edu\/)[^#]*|.*(\.stat\.uci\.edu\/)[^#]*"
 
-# ROBOT = {
-#     ".ics.uci.edu/": urllib.robotparser.RobotFileParser("https://www.ics.uci.edu/robots.txt"),
-#     ".cs.uci.edu/": urllib.robotparser.RobotFileParser("https://www.cs.uci.edu/robots.txt"),
-#     ".informatics.uci.edu/": urllib.robotparser.RobotFileParser("https://www.informatics.uci.edu/robots.txt"),
-#     ".stat.uci.edu/": urllib.robotparser.RobotFileParser("https://www.stat.uci.edu/robots.txt")
-#     }
+# Parse the robots.txt files
+ROBOT = {
+    ".ics.uci.edu/": urllib.robotparser.RobotFileParser("https://www.ics.uci.edu/robots.txt"),
+    ".cs.uci.edu/": urllib.robotparser.RobotFileParser("https://www.cs.uci.edu/robots.txt"),
+    ".informatics.uci.edu/": urllib.robotparser.RobotFileParser("https://www.informatics.uci.edu/robots.txt"),
+    ".stat.uci.edu/": urllib.robotparser.RobotFileParser("https://www.stat.uci.edu/robots.txt")
+    }
+for i in ROBOT.keys(): ROBOT[i].read()
+
+SITEMAP_CHECKED = False
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
-    return [link for link in links if is_valid(link)]
+
+    # Check sitemaps for links
+    sitemaps = []
+    global SITEMAP_CHECKED
+    if not SITEMAP_CHECKED:
+        for domain in ROBOT.keys():
+            ROBOT[domain].read()
+            sites = ROBOT[domain].site_maps()
+            sitemaps += sites if sites != None else []
+        SITEMAP_CHECKED = True
+        return [link for link in links if is_valid(link)] + sitemaps
+    else:
+        return [link for link in links if is_valid(link)]
 
 def update_frequencies(tokens, url):
     # Update the crawler data word frequencies
@@ -156,17 +173,15 @@ def is_valid(url):
             return False
         
         # Check robots.txt
-        # domain = re.match(PATTERN, url)
-        # if domain == None:
-        #     domain = re.match(PATTERN, url+'/')
-        # for i in domain.groups():
-        #     if i != None:
-        #         domain = i
-        #         break
-        # ROBOT[domain].read()
-        # if not ROBOT[domain].can_fetch('*', url): return False
-        
-
+        domain = re.match(PATTERN, url)
+        if domain == None:
+            domain = re.match(PATTERN, url+'/')
+        for i in domain.groups():
+            if i != None:
+                domain = i
+                break
+        if not ROBOT[domain].can_fetch('*', url):
+            return False
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
@@ -176,7 +191,7 @@ def is_valid(url):
             + r"|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso"
             + r"|epub|dll|cnf|tgz|sha1"
             + r"|thmx|mso|arff|rtf|jar|csv"
-            + r"|rm|smil|wmv|swf|wma|zip|rar|gz|apk)$", parsed.path.lower())
+            + r"|rm|smil|wmv|swf|wma|zip|rar|gz|apk|war|ppsx)$", parsed.path.lower())
 
     except TypeError:
         print ("TypeError for ", parsed)

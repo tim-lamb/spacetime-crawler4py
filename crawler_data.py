@@ -40,7 +40,7 @@ def init_crawler_data():
         words = defaultdict(int)
         subdomains = defaultdict(set)
         simhashes = dict()
-        checksum = dict
+        checksum = dict()
 
 def write_data(file):
         try:
@@ -54,6 +54,8 @@ def write_data(file):
                 pickle.dump(subdomains, page)
             with open("url_simhashes.txt", 'wb') as page:
                 pickle.dump(simhashes, page)
+            with open("checksum.txt", 'wb') as page:
+                pickle.dump(checksum, page)
             with open(file,'w') as f:
                 f.write(f"Number of unique pages: {len(urls)}\n\n")
                 f.write(f"Page with most words: {max(url_words.keys(),key=lambda x: url_words[x])}\n\n")

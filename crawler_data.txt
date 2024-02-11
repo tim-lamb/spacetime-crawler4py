@@ -1,45 +1,59 @@
-Number of unique pages: 4868
+Number of unique pages: 4650
 
-Page with most words: http://www.ics.uci.edu/~ajfrank/pubs/aimls12.odp
+Page with most words: http://www.ics.uci.edu/~dvk/pub/C16_SIGMOD14_Jeffrey.ppsx
 
-Number of subdomains: 39
+Number of subdomains: 53
 
-acoi.ics.uci.edu, 83
-archive-beta.ics.uci.edu, 1
-archive.ics.uci.edu, 41
+accessibility.ics.uci.edu, 26
+acoi.ics.uci.edu, 96
+aiclub.ics.uci.edu, 4
+archive-beta.ics.uci.edu, 2
+archive.ics.uci.edu, 11
+asterix.ics.uci.edu, 5
+asterixdb.ics.uci.edu, 1
 calendar.ics.uci.edu, 1
+cert.ics.uci.edu, 1
 cgvw.ics.uci.edu, 1
-cml.ics.uci.edu, 32
-code.ics.uci.edu, 2
-computableplant.ics.uci.edu, 12
-coronavirustwittermap.ics.uci.edu, 1
+cml.ics.uci.edu, 29
 courselisting.ics.uci.edu, 1
-create.ics.uci.edu, 10
-duttgroup.ics.uci.edu, 40
-emj.ics.uci.edu, 39
-futurehealth.ics.uci.edu, 29
-grape.ics.uci.edu, 371
-hombao.ics.uci.edu, 1
-hpi.ics.uci.edu, 5
-isg.ics.uci.edu, 1
-jgarcia.ics.uci.edu, 1
-kdd.ics.uci.edu, 1
-luci.ics.uci.edu, 1
-mailman.ics.uci.edu, 1
-mcs.ics.uci.edu, 64
-mds.ics.uci.edu, 2
+create.ics.uci.edu, 8
+cs.ics.uci.edu, 1
+cwicsocal18.ics.uci.edu, 12
+cyberclub.ics.uci.edu, 17
+dgillen.ics.uci.edu, 1
+duttgroup.ics.uci.edu, 69
+flamingo.ics.uci.edu, 62
+futurehealth.ics.uci.edu, 3
+graphics.ics.uci.edu, 2
+hack.ics.uci.edu, 1
+hpi.ics.uci.edu, 6
+i-sensorium.ics.uci.edu, 19
+iasl.ics.uci.edu, 2
+intranet.ics.uci.edu, 12
+isg.ics.uci.edu, 43
+luci.ics.uci.edu, 4
+mdogucu.ics.uci.edu, 22
+mds.ics.uci.edu, 3
+mhcid.ics.uci.edu, 1
 mse.ics.uci.edu, 1
+mswe.ics.uci.edu, 1
 nalini.ics.uci.edu, 7
-oai.ics.uci.edu, 1
-sconce.ics.uci.edu, 1
-seal.ics.uci.edu, 40
-sli.ics.uci.edu, 208
-studentcouncil.ics.uci.edu, 1
-swiki.ics.uci.edu, 559
-tad.ics.uci.edu, 1
-tippersweb.ics.uci.edu, 2
-ugradforms.ics.uci.edu, 1
-unite.ics.uci.edu, 19
-www-db.ics.uci.edu, 4
-www.ics.uci.edu, 2666
+ngs.ics.uci.edu, 61
+oai.ics.uci.edu, 4
+redmiles.ics.uci.edu, 1
+sdcl.ics.uci.edu, 79
+sherlock.ics.uci.edu, 8
+sli.ics.uci.edu, 172
+statconsulting.ics.uci.edu, 1
+studentcouncil.ics.uci.edu, 43
+summeracademy.ics.uci.edu, 7
+swiki.ics.uci.edu, 1
+tad.ics.uci.edu, 3
+unite.ics.uci.edu, 20
+vision.ics.uci.edu, 1
+wics.ics.uci.edu, 38
+www-db.ics.uci.edu, 32
+www.cert.ics.uci.edu, 1
+www.graphics.ics.uci.edu, 31
+www.ics.uci.edu, 3205
 yarra.ics.uci.edu, 1
