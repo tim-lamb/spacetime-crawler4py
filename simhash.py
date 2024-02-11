@@ -1,7 +1,6 @@
 import hashlib
-import tokenizer
 
-NUM_BITS = 8
+NUM_BITS = 32
 
 def create_hash(word):
     # Create a n bit hash value for a word

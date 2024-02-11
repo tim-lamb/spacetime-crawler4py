@@ -1,6 +1,8 @@
 from collections import defaultdict
 import pickle
 
+# Idea for module-wide variables from: https://stackoverflow.com/questions/1977362/how-to-create-module-wide-variables-in-python
+
 # Data for the crawler report
 def init_crawler_data():
     # Entire set of URLS, Question #1

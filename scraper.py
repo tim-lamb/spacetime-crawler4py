@@ -70,7 +70,7 @@ def check_similarity(url, shash):
         if i == url:
             continue
         # If 90% similar return True
-        if compare_hashes(shash, crawler_data.simhashes[i]) > 0.9:
+        if compare_hashes(shash, crawler_data.simhashes[i]) > 0.80:
             return True
     return False
 
@@ -105,6 +105,10 @@ def extract_next_links(url, resp):
     tokens = []
     for text in soup.stripped_strings:
         tokens += tokenize(text)
+
+    # Avoid files with low information, could be large or small
+    if len(set(tokens)) <= 10:
+        return list()
     update_frequencies(tokens, url)
 
     # Create simhash for the url

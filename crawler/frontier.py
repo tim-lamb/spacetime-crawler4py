@@ -7,11 +7,34 @@ from queue import Queue, Empty
 from utils import get_logger, get_urlhash, normalize
 from scraper import is_valid
 
+from datetime import datetime
+import re
+
+PATTERN = r".*(\.ics\.uci\.edu\/)[^#]*|.*(\.cs\.uci\.edu\/)[^#]*|.*(\.informatics\.uci\.edu\/)[^#]*|.*(\.stat\.uci\.edu\/)[^#]*"
+
+def get_domain(url):
+    # Get domain of a URL
+    domain = re.match(PATTERN, url)
+    if domain == None:
+        domain = re.match(PATTERN, url+'/')
+    for i in domain.groups():
+        if i != None:
+            return i
+
 class Frontier(object):
     def __init__(self, config, restart):
         self.logger = get_logger("FRONTIER")
         self.config = config
         self.to_be_downloaded = list()
+        self.queue_lock = RLock()
+
+        # Timers for each domain to enforce politeness
+        self.domain_timers = {
+            ".ics.uci.edu/": datetime.now(),
+            ".cs.uci.edu/": datetime.now(),
+            ".informatics.uci.edu/": datetime.now(),
+            ".stat.uci.edu/": datetime.now()
+        }
         
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
@@ -48,25 +71,38 @@ class Frontier(object):
             f"total urls discovered.")
 
     def get_tbd_url(self):
-        try:
-            return self.to_be_downloaded.pop()
-        except IndexError:
-            return None
+        with self.queue_lock:
+            try:
+                return self.to_be_downloaded.pop()
+            except IndexError:
+                return None
 
     def add_url(self, url):
         url = normalize(url)
         urlhash = get_urlhash(url)
         if urlhash not in self.save:
-            self.save[urlhash] = (url, False)
-            self.save.sync()
-            self.to_be_downloaded.append(url)
+            with self.queue_lock:
+                self.save[urlhash] = (url, False)
+                self.save.sync()
+                self.to_be_downloaded.append(url)
     
     def mark_url_complete(self, url):
         urlhash = get_urlhash(url)
-        if urlhash not in self.save:
-            # This should not happen.
-            self.logger.error(
-                f"Completed url {url}, but have not seen it before.")
+        with self.queue_lock:
+            if urlhash not in self.save:
+                # This should not happen.
+                self.logger.error(
+                    f"Completed url {url}, but have not seen it before.")
 
-        self.save[urlhash] = (url, True)
-        self.save.sync()
+            self.save[urlhash] = (url, True)
+            self.save.sync()
+
+    def get_domain_time(self, url):
+        # Get domain timer for specific url
+        with self.queue_lock:
+            return self.domain_timers[get_domain(url)]
+        
+    def set_domain_time(self, url):
+        # Set domain timer for specific url
+        with self.queue_lock:
+            self.domain_timers[get_domain(url)] = datetime.now()
