@@ -1,0 +1,29 @@
+Number of unique pages: 3364
+
+Page with most words: https://www.stat.uci.edu/covid19/index.html
+
+Number of subdomains: 23
+
+acoi.ics.uci.edu, 1
+checkin.ics.uci.edu, 5
+coronavirustwittermap.ics.uci.edu, 1
+dgillen.ics.uci.edu, 23
+graphics.ics.uci.edu, 2
+helpdesk.ics.uci.edu, 4
+honors.ics.uci.edu, 1
+hub.ics.uci.edu, 1
+intranet.ics.uci.edu, 1
+malek.ics.uci.edu, 1
+mdogucu.ics.uci.edu, 8
+mds.ics.uci.edu, 3
+mhcid.ics.uci.edu, 1
+mse.ics.uci.edu, 1
+redmiles.ics.uci.edu, 1
+sdcl.ics.uci.edu, 75
+seal.ics.uci.edu, 1
+statconsulting.ics.uci.edu, 1
+studentcouncil.ics.uci.edu, 1
+swiki.ics.uci.edu, 1066
+tippersweb.ics.uci.edu, 2
+www.graphics.ics.uci.edu, 7
+www.ics.uci.edu, 1829

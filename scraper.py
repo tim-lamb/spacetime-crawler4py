@@ -3,7 +3,7 @@ from urllib.parse import urlparse, urldefrag, urljoin, urlunparse
 from bs4 import BeautifulSoup
 from tokenizer import *
 import crawler_data
-
+from simhash import *
 
 # Specified domains in regex pattern
 ALLOWED_URLS_PATTERN = r".*\.ics\.uci\.edu\/[^#]*" \
@@ -64,6 +64,15 @@ def fix_url(base, url):
     # Defragment and return
     return urldefrag(new_url)[0]
 
+def check_similarity(url, shash):
+    # Check similarity with given page against all other urls
+    for i in crawler_data.simhashes.keys():
+        if i == url:
+            continue
+        # If 90% similar return True
+        if compare_hashes(shash, crawler_data.simhashes[i]) > 0.9:
+            return True
+    return False
 
 def extract_next_links(url, resp):
     # Implementation required.
@@ -78,8 +87,8 @@ def extract_next_links(url, resp):
 
     crawler_data.urls.add(url)
     parsed = urlparse(url)
-    if re.match(r"(ics\.uci\.edu)", parsed.netloc):
-        crawler_data.subdomains[parsed.netloc] += 1
+    if re.match(r".*(\.ics\.uci\.edu).*", parsed.netloc):
+        crawler_data.subdomains[parsed.netloc].add(url)
 
     # Check if URL could be opened successfully
     if resp.status != 200:
@@ -98,6 +107,15 @@ def extract_next_links(url, resp):
         tokens += tokenize(text)
     update_frequencies(tokens, url)
 
+    # Create simhash for the url
+    count = computeWordFrequencies(tokens)
+    shash = simhash(count)
+    crawler_data.simhashes[url] = shash
+
+    # Check if near duplicate
+    if check_similarity(url, shash):
+        return list()
+
     # Get all the URLs in a page
     extracted = []
     for site in soup.find_all('a'):
@@ -105,8 +123,7 @@ def extract_next_links(url, resp):
         if found_url == None: continue
         new_url = fix_url(url, found_url)
         extracted.append(new_url)
-    
-    return list()
+    return extracted
 
 def is_valid(url):
     # Decide whether to crawl this url or not. 
@@ -118,7 +135,7 @@ def is_valid(url):
             return False
         
         # Check if the URL is part of allowed domains
-        if not re.match(ALLOWED_URLS_PATTERN, parsed.path.lower()):
+        if not re.match(ALLOWED_URLS_PATTERN, url.lower()):
             return False
         
         return not re.match(

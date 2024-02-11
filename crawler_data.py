@@ -1,4 +1,5 @@
 from collections import defaultdict
+import pickle
 
 # Data for the crawler report
 def init_crawler_data():
@@ -16,17 +17,31 @@ def init_crawler_data():
 
     # All ics.uci.edu subdomains and their occurences
     global subdomains
-    subdomains = defaultdict(int)
+    subdomains = defaultdict(set)
+
+    # Simhash for each page used to detect similarity
+    global simhashes
+    simhashes = dict()
 
 def write_data(file):
     with open(file,'w') as f:
+        with open("pages.txt", 'wb') as page:
+            pickle.dump(urls, page)
+        with open("url_words.txt", 'wb') as page:
+            pickle.dump(url_words, page)
+        with open("word_freq_data.txt", 'wb') as page:
+            pickle.dump(words, page)
+        with open("subdomains.txt", 'wb') as page:
+            pickle.dump(subdomains, page)
+        with open("url_simhashes.txt", 'wb') as page:
+            pickle.dump(simhashes, page)
         f.write(f"Number of unique pages: {len(urls)}\n\n")
         f.write(f"Page with most words: {max(url_words.keys(),key=lambda x: url_words[x])}\n\n")
         f.write(f"Number of subdomains: {len(subdomains.keys())}\n\n")
         subd = subdomains.keys()
         subd = sorted(subd)
         for i in subd:
-            f.write(f"{i}, {subdomains[i]}\n")
+            f.write(f"{i}, {len(subdomains[i])}\n")
 
 
     
