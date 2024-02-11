@@ -44,6 +44,7 @@ def scraper(url, resp):
 
 def update_frequencies(tokens, url):
     # Update the crawler data word frequencies
+    tokens = [token for token in tokens if len(token) > 1]
     for token in tokens:
         crawler_data.words[token] += 1
         crawler_data.url_words[url] += 1

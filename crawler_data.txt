@@ -1,59 +1,50 @@
-Number of unique pages: 4650
+Number of unique pages: 5293
 
-Page with most words: http://www.ics.uci.edu/~dvk/pub/C16_SIGMOD14_Jeffrey.ppsx
+Page with most words: http://www.ics.uci.edu/~wjohnson/BIDA/Ch8/prioriterates.txt
 
-Number of subdomains: 53
+Number of subdomains: 44
 
-accessibility.ics.uci.edu, 26
-acoi.ics.uci.edu, 96
-aiclub.ics.uci.edu, 4
+acoi.ics.uci.edu, 16
 archive-beta.ics.uci.edu, 2
-archive.ics.uci.edu, 11
-asterix.ics.uci.edu, 5
-asterixdb.ics.uci.edu, 1
+archive.ics.uci.edu, 34
 calendar.ics.uci.edu, 1
 cert.ics.uci.edu, 1
-cgvw.ics.uci.edu, 1
-cml.ics.uci.edu, 29
-courselisting.ics.uci.edu, 1
-create.ics.uci.edu, 8
+checkmate.ics.uci.edu, 1
+cml.ics.uci.edu, 23
+code.ics.uci.edu, 1
+create.ics.uci.edu, 1
 cs.ics.uci.edu, 1
-cwicsocal18.ics.uci.edu, 12
-cyberclub.ics.uci.edu, 17
+cyberclub.ics.uci.edu, 1
 dgillen.ics.uci.edu, 1
-duttgroup.ics.uci.edu, 69
-flamingo.ics.uci.edu, 62
-futurehealth.ics.uci.edu, 3
-graphics.ics.uci.edu, 2
+elms.ics.uci.edu, 58
+futurehealth.ics.uci.edu, 59
+grape.ics.uci.edu, 68
+graphmod.ics.uci.edu, 2
 hack.ics.uci.edu, 1
-hpi.ics.uci.edu, 6
-i-sensorium.ics.uci.edu, 19
-iasl.ics.uci.edu, 2
-intranet.ics.uci.edu, 12
-isg.ics.uci.edu, 43
-luci.ics.uci.edu, 4
-mdogucu.ics.uci.edu, 22
+hombao.ics.uci.edu, 1
+hpi.ics.uci.edu, 1
+i-sensorium.ics.uci.edu, 1
+intranet.ics.uci.edu, 1
+isg.ics.uci.edu, 47
+jgarcia.ics.uci.edu, 1
+luci.ics.uci.edu, 1
+mailman.ics.uci.edu, 1
+malek.ics.uci.edu, 1
+mcs.ics.uci.edu, 59
 mds.ics.uci.edu, 3
 mhcid.ics.uci.edu, 1
-mse.ics.uci.edu, 1
-mswe.ics.uci.edu, 1
-nalini.ics.uci.edu, 7
-ngs.ics.uci.edu, 61
-oai.ics.uci.edu, 4
-redmiles.ics.uci.edu, 1
-sdcl.ics.uci.edu, 79
-sherlock.ics.uci.edu, 8
-sli.ics.uci.edu, 172
+mse.ics.uci.edu, 4
+mswe.ics.uci.edu, 18
+ngs.ics.uci.edu, 1
+omni.ics.uci.edu, 1
+redmiles.ics.uci.edu, 4
+sdcl.ics.uci.edu, 77
+sli.ics.uci.edu, 258
 statconsulting.ics.uci.edu, 1
-studentcouncil.ics.uci.edu, 43
-summeracademy.ics.uci.edu, 7
+support.ics.uci.edu, 1
 swiki.ics.uci.edu, 1
-tad.ics.uci.edu, 3
-unite.ics.uci.edu, 20
+unite.ics.uci.edu, 18
 vision.ics.uci.edu, 1
-wics.ics.uci.edu, 38
-www-db.ics.uci.edu, 32
-www.cert.ics.uci.edu, 1
-www.graphics.ics.uci.edu, 31
-www.ics.uci.edu, 3205
+www-db.ics.uci.edu, 33
+www.ics.uci.edu, 3743
 yarra.ics.uci.edu, 1
