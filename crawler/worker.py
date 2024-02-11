@@ -19,13 +19,16 @@ class Worker(Thread):
         super().__init__(daemon=False)
         
     def run(self):
+        time_waiting = datetime.now()
         while not self.frontier.terminate.is_set():
             tbd_url = self.frontier.get_tbd_url()
 
             if not tbd_url:
                 self.logger.info("Frontier is empty. Waiting...")
                 # Mark worker as finished
-                self.frontier.is_finished[self.worker_id].set()
+                if (datetime.now()-time_waiting).total_seconds() > 300:
+                    self.frontier.is_finished[self.worker_id].set()
+                    
                 # If all workers are finished, terminate all
                 if all(map(lambda x: x.is_set(), self.frontier.is_finished)):
                     self.frontier.terminate.set()
@@ -57,6 +60,7 @@ class Worker(Thread):
 
             # Set worker to active
             self.frontier.is_finished[self.worker_id].clear()
+            time_waiting = datetime.now()
         self.logger.info("Terminating...")
     
     def get_time_difference(self, url):

@@ -18,6 +18,8 @@ def init_crawler_data():
     global subdomains
     # Simhash for each page used to detect similarity
     global simhashes
+    # Sum of all bytes for each page to detect exact duplicates
+    global checksum
 
     if LOAD_SAVE:
         with open("pages.txt", 'rb') as page:
@@ -30,12 +32,15 @@ def init_crawler_data():
             subdomains = pickle.load(page)
         with open("url_simhashes.txt", 'rb') as page:
             simhashes = pickle.load(page)
+        with open("checksum.txt", 'rb') as page:
+            checksum = pickle.load(page)
     else:
         urls = set()
         url_words = defaultdict(int)
         words = defaultdict(int)
         subdomains = defaultdict(set)
         simhashes = dict()
+        checksum = dict
 
 def write_data(file):
         try:

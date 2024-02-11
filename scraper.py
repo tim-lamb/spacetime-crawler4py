@@ -4,12 +4,22 @@ from bs4 import BeautifulSoup
 from tokenizer import *
 import crawler_data
 from simhash import *
+import urllib.robotparser
 
 # Specified domains in regex pattern
 ALLOWED_URLS_PATTERN = r".*\.ics\.uci\.edu\/[^#]*" \
                         + r"|.*\.cs\.uci\.edu\/[^#]*" \
                         + r"|.*\.informatics\.uci\.edu\/[^#]*" \
                         + r"|.*\.stat\.uci\.edu\/[^#]*"
+# With groups
+PATTERN = r".*(\.ics\.uci\.edu\/)[^#]*|.*(\.cs\.uci\.edu\/)[^#]*|.*(\.informatics\.uci\.edu\/)[^#]*|.*(\.stat\.uci\.edu\/)[^#]*"
+
+# ROBOT = {
+#     ".ics.uci.edu/": urllib.robotparser.RobotFileParser("https://www.ics.uci.edu/robots.txt"),
+#     ".cs.uci.edu/": urllib.robotparser.RobotFileParser("https://www.cs.uci.edu/robots.txt"),
+#     ".informatics.uci.edu/": urllib.robotparser.RobotFileParser("https://www.informatics.uci.edu/robots.txt"),
+#     ".stat.uci.edu/": urllib.robotparser.RobotFileParser("https://www.stat.uci.edu/robots.txt")
+#     }
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
@@ -48,17 +58,6 @@ def fix_url(base, url):
         url_parsed = url_parsed._replace(scheme=base_parsed.scheme)
     
     new_url = url_parsed.geturl()
-
-    # with open("debug.txt", 'a') as f:
-    #     f.write("base url:")
-    #     f.write(base)
-    #     f.write('\n')
-    #     f.write("old url:")
-    #     f.write(url)
-    #     f.write('\n')
-    #     f.write("new url:")
-    #     f.write(urldefrag(new_url)[0])
-    #     f.write('\n\n')
 
     # Defragment and return
     return urldefrag(new_url)[0]
@@ -105,6 +104,12 @@ def extract_next_links(url, resp):
     if len(resp.raw_response.content) > 5000000:
         return list()
 
+    # Check if exact duplicate using checksum method
+    checksum = sum(resp.raw_response.content)
+    if checksum in crawler_data.checksum.values(): return list()
+    else:
+        crawler_data.checksum[url] = checksum
+
     # Parse the contents of the page
     soup = BeautifulSoup(resp.raw_response.content, 'html.parser')
 
@@ -127,6 +132,7 @@ def extract_next_links(url, resp):
     if check_similarity(url, shash):
         return list()
 
+    
     # Get all the URLs in a page
     extracted = []
     for site in soup.find_all('a'):
@@ -149,6 +155,19 @@ def is_valid(url):
         if not re.match(ALLOWED_URLS_PATTERN, url.lower()):
             return False
         
+        # Check robots.txt
+        # domain = re.match(PATTERN, url)
+        # if domain == None:
+        #     domain = re.match(PATTERN, url+'/')
+        # for i in domain.groups():
+        #     if i != None:
+        #         domain = i
+        #         break
+        # ROBOT[domain].read()
+        # if not ROBOT[domain].can_fetch('*', url): return False
+        
+
+
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"

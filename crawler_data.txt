@@ -1,51 +1,45 @@
-Number of unique pages: 5043
+Number of unique pages: 4868
 
 Page with most words: http://www.ics.uci.edu/~ajfrank/pubs/aimls12.odp
 
-Number of subdomains: 45
+Number of subdomains: 39
 
-acoi.ics.uci.edu, 1
-aiclub.ics.uci.edu, 4
-archive-beta.ics.uci.edu, 2
-archive.ics.uci.edu, 32
+acoi.ics.uci.edu, 83
+archive-beta.ics.uci.edu, 1
+archive.ics.uci.edu, 41
 calendar.ics.uci.edu, 1
-cert.ics.uci.edu, 1
-cml.ics.uci.edu, 43
-code.ics.uci.edu, 1
-computableplant.ics.uci.edu, 8
+cgvw.ics.uci.edu, 1
+cml.ics.uci.edu, 32
+code.ics.uci.edu, 2
+computableplant.ics.uci.edu, 12
+coronavirustwittermap.ics.uci.edu, 1
 courselisting.ics.uci.edu, 1
-create.ics.uci.edu, 11
-cwicsocal18.ics.uci.edu, 10
+create.ics.uci.edu, 10
+duttgroup.ics.uci.edu, 40
 emj.ics.uci.edu, 39
-grape.ics.uci.edu, 367
-hack.ics.uci.edu, 1
-hana.ics.uci.edu, 1
-hpi.ics.uci.edu, 8
-i-sensorium.ics.uci.edu, 13
-intranet.ics.uci.edu, 12
-isg.ics.uci.edu, 42
-jgarcia.ics.uci.edu, 21
+futurehealth.ics.uci.edu, 29
+grape.ics.uci.edu, 371
+hombao.ics.uci.edu, 1
+hpi.ics.uci.edu, 5
+isg.ics.uci.edu, 1
+jgarcia.ics.uci.edu, 1
+kdd.ics.uci.edu, 1
 luci.ics.uci.edu, 1
 mailman.ics.uci.edu, 1
-malek.ics.uci.edu, 1
-mcs.ics.uci.edu, 63
+mcs.ics.uci.edu, 64
 mds.ics.uci.edu, 2
-mhcid.ics.uci.edu, 1
-mse.ics.uci.edu, 4
-mswe.ics.uci.edu, 23
-nalini.ics.uci.edu, 9
-redmiles.ics.uci.edu, 4
-sdcl.ics.uci.edu, 58
-seal.ics.uci.edu, 45
-sli.ics.uci.edu, 252
+mse.ics.uci.edu, 1
+nalini.ics.uci.edu, 7
+oai.ics.uci.edu, 1
+sconce.ics.uci.edu, 1
+seal.ics.uci.edu, 40
+sli.ics.uci.edu, 208
 studentcouncil.ics.uci.edu, 1
-swiki.ics.uci.edu, 1
-tad.ics.uci.edu, 3
-tutors.ics.uci.edu, 5
+swiki.ics.uci.edu, 559
+tad.ics.uci.edu, 1
+tippersweb.ics.uci.edu, 2
 ugradforms.ics.uci.edu, 1
-vision.ics.uci.edu, 1
-wics.ics.uci.edu, 38
-www-db.ics.uci.edu, 22
-www.cert.ics.uci.edu, 1
-www.ics.uci.edu, 3262
+unite.ics.uci.edu, 19
+www-db.ics.uci.edu, 4
+www.ics.uci.edu, 2666
 yarra.ics.uci.edu, 1
