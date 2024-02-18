@@ -24,9 +24,10 @@ class Worker(Thread):
             tbd_url = self.frontier.get_tbd_url()
 
             if not tbd_url:
-                self.logger.info("Frontier is empty. Waiting...")
+                #self.logger.info("Frontier is empty. Waiting...")
                 # Mark worker as finished
                 if (datetime.now()-time_waiting).total_seconds() > 300:
+                    self.logger.info("Frontier is empty. Waiting...")
                     self.frontier.is_finished[self.worker_id].set()
                     
                 # If all workers are finished, terminate all

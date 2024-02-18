@@ -1,6 +1,6 @@
 import hashlib
 
-NUM_BITS = 32
+NUM_BITS = 64
 
 def create_hash(word):
     # Create a n bit hash value for a word

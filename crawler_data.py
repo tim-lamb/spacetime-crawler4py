@@ -20,20 +20,28 @@ def init_crawler_data():
     global simhashes
     # Sum of all bytes for each page to detect exact duplicates
     global checksum
+    # All URLS seen
+    global links
+    # List of 404 counts
+    global check404
 
     if LOAD_SAVE:
-        with open("pages.txt", 'rb') as page:
+        with open("data/pages.txt", 'rb') as page:
             urls = pickle.load(page)
-        with open("url_words.txt", 'rb') as page:
+        with open("data/url_words.txt", 'rb') as page:
             url_words = pickle.load(page)
-        with open("word_freq_data.txt", 'rb') as page:
+        with open("data/word_freq_data.txt", 'rb') as page:
             words = pickle.load(page)
-        with open("subdomains.txt", 'rb') as page:
+        with open("data/subdomains.txt", 'rb') as page:
             subdomains = pickle.load(page)
-        with open("url_simhashes.txt", 'rb') as page:
+        with open("data/url_simhashes.txt", 'rb') as page:
             simhashes = pickle.load(page)
-        with open("checksum.txt", 'rb') as page:
+        with open("data/checksum.txt", 'rb') as page:
             checksum = pickle.load(page)
+        with open("data/links.txt", 'rb') as page:
+            links = pickle.load(page)
+        with open("data/404s.txt", 'rb') as page:
+            check404 = pickle.load(page)
     else:
         urls = set()
         url_words = defaultdict(int)
@@ -41,22 +49,29 @@ def init_crawler_data():
         subdomains = defaultdict(set)
         simhashes = dict()
         checksum = dict()
+        links = set()
+        check404 = defaultdict(int)
 
 def write_data(file):
         try:
-            with open("pages.txt", 'wb') as page:
+            with open("data/pages.txt", 'wb') as page:
                 pickle.dump(urls, page)
-            with open("url_words.txt", 'wb') as page:
+            with open("data/url_words.txt", 'wb') as page:
                 pickle.dump(url_words, page)
-            with open("word_freq_data.txt", 'wb') as page:
+            with open("data/word_freq_data.txt", 'wb') as page:
                 pickle.dump(words, page)
-            with open("subdomains.txt", 'wb') as page:
+            with open("data/subdomains.txt", 'wb') as page:
                 pickle.dump(subdomains, page)
-            with open("url_simhashes.txt", 'wb') as page:
+            with open("data/url_simhashes.txt", 'wb') as page:
                 pickle.dump(simhashes, page)
-            with open("checksum.txt", 'wb') as page:
+            with open("data/checksum.txt", 'wb') as page:
                 pickle.dump(checksum, page)
+            with open("data/links.txt", 'wb') as page:
+                pickle.dump(links, page)
+            with open("data/404s.txt", 'wb') as page:
+                pickle.dump(check404, page)
             with open(file,'w') as f:
+                f.write(f"Number of unique URLS: {len(links)}\n\n")
                 f.write(f"Number of unique pages: {len(urls)}\n\n")
                 f.write(f"Page with most words: {max(url_words.keys(),key=lambda x: url_words[x])}\n\n")
                 f.write(f"Number of subdomains: {len(subdomains.keys())}\n\n")

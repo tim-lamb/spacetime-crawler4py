@@ -49,7 +49,7 @@ class Frontier(object):
             "informatics.uci.edu/": list(),
             "stat.uci.edu/": list()
         }
-        crawler_data.init_load_save()
+        
         if not os.path.exists(self.config.save_file) and not restart:
             # Save file does not exist, but request to load save.
             self.logger.info(
@@ -79,7 +79,8 @@ class Frontier(object):
         total_count = len(self.save)
         tbd_count = 0
         for url, completed in self.save.values():
-            if not completed and is_valid(url):
+            # if not completed and is_valid(url):
+            if not completed:
                 self.to_be_downloaded[get_domain(url)].append(url)
                 tbd_count += 1
         self.logger.info(
@@ -96,8 +97,18 @@ class Frontier(object):
 
                 # Choose random domain and assign it to worker, max 15 loops
                 for _ in range(15):
-                    chosen = self.to_be_downloaded[random.choice(DOMAINS)]
-                    if chosen != None or len(chosen) > 0: break
+                    choice = random.choice(DOMAINS)
+                    chosen = self.to_be_downloaded[choice]
+                    if chosen != None or len(chosen) > 0:
+                        url = chosen.pop()
+                        trimmed = []
+                        for link in self.to_be_downloaded[choice]:
+                            if is_valid(link):
+                                trimmed.append(link)
+                            else:
+                                self.mark_url_complete(link)
+                        self.to_be_downloaded[choice] = trimmed
+                        return url
                 return chosen.pop()
             except IndexError:
                 return None
